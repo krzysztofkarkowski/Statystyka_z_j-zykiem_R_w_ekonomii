@@ -14,7 +14,7 @@ names(tab)[17:30]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Styczen_2006","Stycz
 names(tab)[31:44]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
 names(tab)[45:58]<-paste0("Margaryna_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
 names(tab)[59:72]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Styczczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
-names(tab)[73:86]<-paste0("Pomarańcze_,",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[73:86]<-paste0("Pomarańcze_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
 names(tab)[87:100]<-paste0("Marchew_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
 names(tab)[101:114]<-paste0("Herbata_Czarna_Liściasta_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
 names(tab)[115:128]<-paste0("Bateria_zlewozmywaka_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
@@ -136,11 +136,11 @@ sr_ryz<- tab %>%
           "2006" = mean(Ryż_Styczen_2006))
 
 
-new<-gather(sr_ryz, średnia_Ryż_Styczen, cena)
+new1<-gather(sr_ryz, średnia_Ryż_Styczen, cena)
 View(new)
 
 
-ggplot(new,aes(x = średnia_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+ggplot(new1,aes(x = średnia_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
 
 sd_ryz<- tab %>%
   summarise("2019" = sd(Ryż_Styczen_2019),
@@ -159,11 +159,11 @@ sd_ryz<- tab %>%
             "2006" = sd(Ryż_Styczen_2006))
 
 
-new<-gather(sd_ryz, odchylenie_standardowe_Ryż_Styczen, cena)
-View(new)
+new2<-gather(sd_ryz, odchylenie_standardowe_Ryż_Styczen, cena)
+View(new2)
 
 
-ggplot(new,aes(x = odchylenie_standardowe_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)      
+ggplot(new2,aes(x = odchylenie_standardowe_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)      
 
 sr_mieso<- tab %>%
   summarise("2019" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2019),
@@ -183,7 +183,7 @@ sr_mieso<- tab %>%
 
 
 new_mieso1<-gather(sr_mieso, średnia_Mięso_Wieprzowe_Z_Kością_Styczen, cena)
-View(new)
+View(new_mieso1)
 
 
 ggplot(new_mieso1,aes(x = średnia_Mięso_Wieprzowe_Z_Kością_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
@@ -206,8 +206,104 @@ sd_mieso<- tab %>%
 
 
 new_mieso<-gather(sd_mieso, odchylenie_standardowe_Mięso_Wieprzowe_Z_Kością_Styczen, cena)
-View(new)
+View(new_mieso)
 
 
 ggplot(new_mieso,aes(x = odchylenie_standardowe_Mięso_Wieprzowe_Z_Kością_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)      
 
+
+
+
+sr_bateria<- tab %>%
+  summarise("2019" = mean(Bateria_zlewozmywaka_Styczen_2019),
+            "2018" = mean(Bateria_zlewozmywaka_Styczen_2018),
+            "2017" = mean(Bateria_zlewozmywaka_Styczen_2017),
+            "2016" = mean(Bateria_zlewozmywaka_Styczen_2016),
+            "2015" = mean(Bateria_zlewozmywaka_Styczen_2015),
+            "2014" = mean(Bateria_zlewozmywaka_Styczen_2014),
+            "2013" = mean(Bateria_zlewozmywaka_Styczen_2013),
+            "2012" = mean(Bateria_zlewozmywaka_Styczen_2012),
+            "2011" = mean(Bateria_zlewozmywaka_Styczen_2011),
+            "2010" = mean(Bateria_zlewozmywaka_Styczen_2010),
+            "2009" = mean(Bateria_zlewozmywaka_Styczen_2009),
+            "2008" = mean(Bateria_zlewozmywaka_Styczen_2008),
+            "2007" = mean(Bateria_zlewozmywaka_Styczen_2007),
+            "2006" = mean(Bateria_zlewozmywaka_Styczen_2006))
+
+
+new_bateria<-gather(sr_bateria,średnia_Bateria_zlewozmywaka_Styczen, cena)
+View(new_bateria)
+
+
+ggplot(new_bateria,aes(x = średnia_Bateria_zlewozmywaka_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+
+sd_bateria<- tab %>%
+  summarise("2019" = sd(Bateria_zlewozmywaka_Styczen_2019),
+            "2018" = sd(Bateria_zlewozmywaka_Styczen_2018),
+            "2017" = sd(Bateria_zlewozmywaka_Styczen_2017),
+            "2016" = sd(Bateria_zlewozmywaka_Styczen_2016),
+            "2015" = sd(Bateria_zlewozmywaka_Styczen_2015),
+            "2014" = sd(Bateria_zlewozmywaka_Styczen_2014),
+            "2013" = sd(Bateria_zlewozmywaka_Styczen_2013),
+            "2012" = sd(Bateria_zlewozmywaka_Styczen_2012),
+            "2011" = sd(Bateria_zlewozmywaka_Styczen_2011),
+            "2010" = sd(Bateria_zlewozmywaka_Styczen_2010),
+            "2009" = sd(Bateria_zlewozmywaka_Styczen_2009),
+            "2008" = sd(Bateria_zlewozmywaka_Styczen_2008),
+            "2007" = sd(Bateria_zlewozmywaka_Styczen_2007),
+            "2006" = sd(Bateria_zlewozmywaka_Styczen_2006))
+
+
+new_bateria1<-gather(sd_bateria, rok,odchylenie_standardowe_Bateria_zlewozmywaka_Styczen )
+View(new_bateria)
+
+
+ggplot(new_bateria,aes(x = rok,y =odchylenie_standardowe_Bateria_zlewozmywaka_Styczen)) +geom_bar(stat="identity", width = 0.7)      
+
+
+
+sr_pom<- tab %>%
+  summarise("2019" = mean(Pomarańcze_Styczen_2019),
+            "2018" = mean(Pomarańcze_Styczen_2018),
+            "2017" = mean(Pomarańcze_Styczen_2017),
+            "2016" = mean(Pomarańcze_Styczen_2016),
+            "2015" = mean(Pomarańcze_Styczen_2015),
+            "2014" = mean(Pomarańcze_Styczen_2014),
+            "2013" = mean(Pomarańcze_Styczen_2013),
+            "2012" = mean(Pomarańcze_Styczen_2012),
+            "2011" = mean(Pomarańcze_Styczen_2011),
+            "2010" = mean(Pomarańcze_Styczen_2010),
+            "2009" = mean(Pomarańcze_Styczen_2009),
+            "2008" = mean(Pomarańcze_Styczen_2008),
+            "2007" = mean(Pomarańcze_Styczen_2007),
+            "2006" = mean(Pomarańcze_Styczen_2006))
+
+
+new_pom<-gather(sr_pom,średnia_Pomarańcze_Styczen, cena)
+View(new_pom)
+
+
+ggplot(new_pom,aes(x = średnia_Pomarańcze_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+
+sd_pom<- tab %>%
+  summarise("2019" = sd(Pomarańcze_Styczen_2019),
+            "2018" = sd(Pomarańcze_Styczen_2018),
+            "2017" = sd(Pomarańcze_Styczen_2017),
+            "2016" = sd(Pomarańcze_Styczen_2016),
+            "2015" = sd(Pomarańcze_Styczen_2015),
+            "2014" = sd(Pomarańcze_Styczen_2014),
+            "2013" = sd(Pomarańcze_Styczen_2013),
+            "2012" = sd(Pomarańcze_Styczen_2012),
+            "2011" = sd(Pomarańcze_Styczen_2011),
+            "2010" = sd(Pomarańcze_Styczen_2010),
+            "2009" = sd(Pomarańcze_Styczen_2009),
+            "2008" = sd(Pomarańcze_Styczen_2008),
+            "2007" = sd(Pomarańcze_Styczen_2007),
+            "2006" = sd(Pomarańcze_Styczen_2006))
+
+
+new_pom1<-gather(sd_pom, rok,odchylenie_standardowe_Pomarańcze_Styczen )
+View(new_bateria)
+
+
+ggplot(new_pom1,aes(x = rok,y =odchylenie_standardowe_Pomarańcze_Styczen)) +geom_bar(stat="identity", width = 0.7)      
