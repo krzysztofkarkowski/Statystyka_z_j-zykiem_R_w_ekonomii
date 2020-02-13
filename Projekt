@@ -1,0 +1,213 @@
+library(ggpmisc)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+tab<-read.csv(file="C:/Users/Krzyś/Downloads/Dane.csv",sep=";",dec=",",encoding = "UTF-8")
+rzegląd danych
+
+names(tab)
+names(tab)[1:8]
+
+names(tab)[3:16]<-paste0("Ryż_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[17:30]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[31:44]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[45:58]<-paste0("Margaryna_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[59:72]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Styczczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[73:86]<-paste0("Pomarańcze_,",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[87:100]<-paste0("Marchew_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[101:114]<-paste0("Herbata_Czarna_Liściasta_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[115:128]<-paste0("Bateria_zlewozmywaka_",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+names(tab)[129:142]<-paste0("Olej_Napędowy",c("Styczen_2006","Styczen_2007","Styczen_2008","Styczen_2009","Styczen_2010","Styczen_2011","Styczen_2012","Styczen_2013","Styczen_2014","Styczen_2015","Styczen_2016","Styczen_2017","Styczen_2018","Styczen_2019"))
+
+names(tab)[143:156]<-paste0("Ryż_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[157:170]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[171:184]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[185:198]<-paste0("Margaryna_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[199:212]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[213:226]<-paste0("Pomarańcze_,",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[227:240]<-paste0("Marchew_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[241:254]<-paste0("Herbata_Czarna_Liściasta_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[255:268]<-paste0("Bateria_zlewozmywaka_",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+names(tab)[269:282]<-paste0("Olej_Napędowy",c("Luty_2006","Luty_2007","Luty_2008","Luty_2009","Luty_2010","Luty_2011","Luty_2012","Luty_2013","Luty_2014","Luty_2015","Luty_2016","Luty_2017","Luty_2018","Luty_2019"))
+
+names(tab)[283:296]<-paste0("Ryż_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[297:310]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[311:324]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[325:338]<-paste0("Margaryna_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[339:352]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[353:366]<-paste0("Pomarańcze_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[367:380]<-paste0("Marchew_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[381:394]<-paste0("Herbata_Czarna_Liściasta_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[395:408]<-paste0("Bateria_zlewozmywaka_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+names(tab)[409:422]<-paste0("Olej_Napędowy_",c("Marzec_2006","Marzec_2007","Marzec_2008","Marzec_2009","Marzec_2010","Marzec_2011","Marzec_2012","Marzec_2013","Marzec_2014","Marzec_2015","Marzec_2016","Marzec_2017","Marzec_2018","Marzec_2019"))
+
+names(tab)[423:436]<-paste0("Ryż_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[437:450]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[451:464]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[465:478]<-paste0("Margaryna_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[479:492]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[493:506]<-paste0("Pomarańcze_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[507:520]<-paste0("Marchew_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[521:534]<-paste0("Herbata_Czarna_Liściasta_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[535:548]<-paste0("Bateria_zlewozmywaka_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+names(tab)[549:562]<-paste0("Olej_Napędowy_",c("Kwiecien_2006","Kwiecien_2007","Kwiecien_2008","Kwiecien_2009","Kwiecien_2010","Kwiecien_2011","Kwiecien_2012","Kwiecien_2013","Kwiecien_2014","Kwiecien_2015","Kwiecien_2016","Kwiecien_2017","Kwiecien_2018","Kwiecien_2019"))
+
+names(tab)[563:576]<-paste0("Ryż_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[577:590]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[591:604]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[605:618]<-paste0("Margaryna_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[619:632]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[633:646]<-paste0("Pomarańcze_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[647:660]<-paste0("Marchew_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[661:674]<-paste0("Herbata_Czarna_Liściasta_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[675:688]<-paste0("Bateria_zlewozmywaka_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+names(tab)[689:702]<-paste0("Olej_Napędowy_",c("Maj_2006","Maj_2007","Maj_2008","Maj_2009","Maj_2010","Maj_2011","Maj_2012","Maj_2013","Maj_2014","Maj_2015","Maj_2016","Maj_2017","Maj_2018","Maj_2019"))
+
+names(tab)[703:716]<-paste0("Ryż_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[717:730]<-paste0("Mięso_Wieprzowe_Z_Kością_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[731:744]<-paste0("Szynka_Wieprzowa_Gotowana_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[745:758]<-paste0("Margaryna_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[759:772]<-paste0("Olej_Rzepakowy_Prod_Krajowej_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[773:786]<-paste0("Pomarańcze_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[787:790]<-paste0("Marchew_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[791:804]<-paste0("Herbata_Czarna_Liściasta_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[805:818]<-paste0("Bateria_zlewozmywaka_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+names(tab)[819:832]<-paste0("Olej_Napędowy_",c("Czerwiec_2006","Czerwiec_2007","Czerwiec_2008","Czerwiec_2009","Czerwiec_2010","Czerwiec_2011","Czerwiec_2012","Czerwiec_2013","Czerwiec_2014","Czerwiec_2015","Czerwiec_2016","Czerwiec_2017","Czerwiec_2018","Czerwiec_2019"))
+
+
+View(tab)
+ggplot(tab,aes(x = Nazwa,y = Ryż_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+theme(text = element_text(size=20),
+      axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Mięso_Wieprzowe_Z_Kością_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Szynka_Wieprzowa_Gotowana_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Margaryna_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Olej_Rzepakowy_Prod_Krajowej_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Pomarańcze_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Marchew_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Herbata_Czarna_Liściasta_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Bateria_zlewozmywaka_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+ggplot(tab,aes(x = Nazwa,y = Olej_Napędowy_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
+
+
+
+sr_ryz<- tab %>%
+  summarise("2019" = mean(Ryż_Styczen_2019),
+          "2018" = mean(Ryż_Styczen_2018),
+          "2017" = mean(Ryż_Styczen_2017),
+          "2016" = mean(Ryż_Styczen_2016),
+          "2015" = mean(Ryż_Styczen_2015),
+          "2014" = mean(Ryż_Styczen_2014),
+          "2013" = mean(Ryż_Styczen_2013),
+          "2012" = mean(Ryż_Styczen_2012),
+          "2011" = mean(Ryż_Styczen_2011),
+          "2010" = mean(Ryż_Styczen_2010),
+          "2009" = mean(Ryż_Styczen_2009),
+          "2008" = mean(Ryż_Styczen_2008),
+          "2007" = mean(Ryż_Styczen_2007),
+          "2006" = mean(Ryż_Styczen_2006))
+
+
+new<-gather(sr_ryz, średnia_Ryż_Styczen, cena)
+View(new)
+
+
+ggplot(new,aes(x = średnia_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+
+sd_ryz<- tab %>%
+  summarise("2019" = sd(Ryż_Styczen_2019),
+            "2018" = sd(Ryż_Styczen_2018),
+            "2017" = sd(Ryż_Styczen_2017),
+            "2016" = sd(Ryż_Styczen_2016),
+            "2015" = sd(Ryż_Styczen_2015),
+            "2014" = sd(Ryż_Styczen_2014),
+            "2013" = sd(Ryż_Styczen_2013),
+            "2012" = sd(Ryż_Styczen_2012),
+            "2011" = sd(Ryż_Styczen_2011),
+            "2010" = sd(Ryż_Styczen_2010),
+            "2009" = sd(Ryż_Styczen_2009),
+            "2008" = sd(Ryż_Styczen_2008),
+            "2007" = sd(Ryż_Styczen_2007),
+            "2006" = sd(Ryż_Styczen_2006))
+
+
+new<-gather(sd_ryz, odchylenie_standardowe_Ryż_Styczen, cena)
+View(new)
+
+
+ggplot(new,aes(x = odchylenie_standardowe_Ryż_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)      
+
+sr_mieso<- tab %>%
+  summarise("2019" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2019),
+            "2018" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2018),
+            "2017" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2017),
+            "2016" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2016),
+            "2015" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2015),
+            "2014" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2014),
+            "2013" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2013),
+            "2012" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2012),
+            "2011" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2011),
+            "2010" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2010),
+            "2009" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2009),
+            "2008" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2008),
+            "2007" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2007),
+            "2006" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2006))
+
+
+new_mieso1<-gather(sr_mieso, średnia_Mięso_Wieprzowe_Z_Kością_Styczen, cena)
+View(new)
+
+
+ggplot(new_mieso1,aes(x = średnia_Mięso_Wieprzowe_Z_Kością_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+
+sd_mieso<- tab %>%
+  summarise("2019" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2019),
+            "2018" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2018),
+            "2017" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2017),
+            "2016" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2016),
+            "2015" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2015),
+            "2014" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2014),
+            "2013" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2013),
+            "2012" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2012),
+            "2011" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2011),
+            "2010" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2010),
+            "2009" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2009),
+            "2008" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2008),
+            "2007" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2007),
+            "2006" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2006))
+
+
+new_mieso<-gather(sd_mieso, odchylenie_standardowe_Mięso_Wieprzowe_Z_Kością_Styczen, cena)
+View(new)
+
+
+ggplot(new_mieso,aes(x = odchylenie_standardowe_Mięso_Wieprzowe_Z_Kością_Styczen,y =cena)) +geom_bar(stat="identity", width = 0.7)      
+
