@@ -1,10 +1,18 @@
+install.packages("ggmisc")
+install.packages("tidyr")
+install.packages("dplyr")
+install.packages("ggplot2")
+
+
+
+
 library(ggpmisc)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
 
-tab<-read.csv(file="C:/Users/Krzyś/Downloads/Dane.csv",sep=";",dec=",",encoding = "UTF-8")
-rzegląd danych
+tab<-read.csv(file="C:/Users/Monia/Downloads/k-kar/Dane.csv",sep=";",dec=",",encoding = "UTF-8")
+
 
 names(tab)
 names(tab)[1:8]
@@ -78,8 +86,8 @@ names(tab)[819:832]<-paste0("Olej_Napędowy_",c("Czerwiec_2006","Czerwiec_2007",
 
 View(tab)
 ggplot(tab,aes(x = Nazwa,y = Ryż_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
-theme(text = element_text(size=20),
-      axis.text.x = element_text(angle=90, hjust=1)) 
+  theme(text = element_text(size=20),
+        axis.text.x = element_text(angle=90, hjust=1)) 
 
 ggplot(tab,aes(x = Nazwa,y = Mięso_Wieprzowe_Z_Kością_Styczen_2016)) +geom_bar(stat="identity", width = 0.1)+       
   theme(text = element_text(size=20),
@@ -121,19 +129,19 @@ ggplot(tab,aes(x = Nazwa,y = Olej_Napędowy_Styczen_2016)) +geom_bar(stat="ident
 
 sr_ryz<- tab %>%
   summarise("2019" = mean(Ryż_Styczen_2019),
-          "2018" = mean(Ryż_Styczen_2018),
-          "2017" = mean(Ryż_Styczen_2017),
-          "2016" = mean(Ryż_Styczen_2016),
-          "2015" = mean(Ryż_Styczen_2015),
-          "2014" = mean(Ryż_Styczen_2014),
-          "2013" = mean(Ryż_Styczen_2013),
-          "2012" = mean(Ryż_Styczen_2012),
-          "2011" = mean(Ryż_Styczen_2011),
-          "2010" = mean(Ryż_Styczen_2010),
-          "2009" = mean(Ryż_Styczen_2009),
-          "2008" = mean(Ryż_Styczen_2008),
-          "2007" = mean(Ryż_Styczen_2007),
-          "2006" = mean(Ryż_Styczen_2006))
+            "2018" = mean(Ryż_Styczen_2018),
+            "2017" = mean(Ryż_Styczen_2017),
+            "2016" = mean(Ryż_Styczen_2016),
+            "2015" = mean(Ryż_Styczen_2015),
+            "2014" = mean(Ryż_Styczen_2014),
+            "2013" = mean(Ryż_Styczen_2013),
+            "2012" = mean(Ryż_Styczen_2012),
+            "2011" = mean(Ryż_Styczen_2011),
+            "2010" = mean(Ryż_Styczen_2010),
+            "2009" = mean(Ryż_Styczen_2009),
+            "2008" = mean(Ryż_Styczen_2008),
+            "2007" = mean(Ryż_Styczen_2007),
+            "2006" = mean(Ryż_Styczen_2006))
 
 
 new1<-gather(sr_ryz, średnia_Ryż_Styczen, cena)
@@ -303,7 +311,48 @@ sd_pom<- tab %>%
 
 
 new_pom1<-gather(sd_pom, rok,odchylenie_standardowe_Pomarańcze_Styczen )
-View(new_bateria)
+View(new_pom1)
 
 
-ggplot(new_pom1,aes(x = rok,y =odchylenie_standardowe_Pomarańcze_Styczen)) +geom_bar(stat="identity", width = 0.7)      
+ggplot(new_pom1,aes(x = rok,y =odchylenie_standardowe_Pomarańcze_Styczen)) +geom_bar(stat="identity", width = 0.7)
+
+
+sr_tow<- tab %>%
+  summarise("Ryż" = mean(Ryż_Styczen_2019),
+            "Mięso" = mean(Mięso_Wieprzowe_Z_Kością_Styczen_2019),
+            "Szynka" = mean(Szynka_Wieprzowa_Gotowana_Styczen_2019),
+            "Margaryna" = mean(Margaryna_Styczen_2019),
+            "Olej_Rzepakowy" = mean(Olej_Rzepakowy_Prod_Krajowej_Styczen_2019),
+            "Pomarańcze" = mean(Pomarańcze_Styczen_2019),
+            "Marchew" = mean(Marchew_Styczen_2019),
+            "Herbata_Czarna_Liściasta" = mean(Herbata_Czarna_Liściasta_Styczen_2019),
+            "Bateria_zlewozmywaka" = mean(Bateria_zlewozmywaka_Styczen_2019))
+           
+            
+
+
+new_tow<-gather(sr_tow,średnia_Towary_Styczen_2019, cena)
+
+View(new_tow)
+
+
+ggplot(new_tow,aes(x = średnia_Towary_Styczen_2019,y =cena)) +geom_bar(stat="identity", width = 0.7)   
+
+sd_tow<- tab %>%
+  summarise("Ryż" = sd(Ryż_Styczen_2019),
+            "Mięso" = sd(Mięso_Wieprzowe_Z_Kością_Styczen_2019),
+            "Szynka" = sd(Szynka_Wieprzowa_Gotowana_Styczen_2019),
+            "Margaryna" = sd(Margaryna_Styczen_2019),
+            "Olej_Rzepakowy" = sd(Olej_Rzepakowy_Prod_Krajowej_Styczen_2019),
+            "Pomarańcze" = sd(Pomarańcze_Styczen_2019),
+            "Marchew" = sd(Marchew_Styczen_2019),
+            "Herbata_Czarna_Liściasta" = sd(Herbata_Czarna_Liściasta_Styczen_2019),
+            "Bateria_zlewozmywaka" = sd(Bateria_zlewozmywaka_Styczen_2019))
+
+
+
+new_tow1<-gather(sd_tow, rok,odchylenie_standardowe_Towary_Styczen )
+View(new_tow1)
+
+
+ggplot(new_tow1,aes(x = rok,y =odchylenie_standardowe_Towary_Styczen)) +geom_bar(stat="identity", width = 0.7)
