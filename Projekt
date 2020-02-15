@@ -11,7 +11,7 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 
-tab<-read.csv(file="C:/Users/Monia/Downloads/k-kar/Dane.csv",sep=";",dec=",",encoding = "UTF-8")
+tab<-read.csv(file="Dane.csv",sep=";",dec=",",encoding = "UTF-8")
 
 
 names(tab)
